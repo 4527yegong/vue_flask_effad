@@ -22,6 +22,14 @@ import work from './components/work.vue'
 import statue from './components/statue.vue'   
 import Tenant from './components/Tenant.vue'
 import modelmge from './components/modelmge.vue'
+import DeviceManager from './components/DeviceManager.vue'
+import TimeSeriesDB from './components/TimeSeriesDB.vue'
+import robot_track from './components/robot_track.vue'
+import work_list from './components/work_list.vue'
+import TingModelManage from './components/ThingModelManager.vue'
+import EdgeManagement from './components/EdgeManagement.vue'
+import SceneLinkage from './components/SceneLinkage.vue'
+import AdvancedDataTransform from './components/AdvancedDataTransform.vue'
 
 Vue.use(Element)
 Vue.config.productionTip = false// 对于 JavaScript 文件，应该使用如下语法
@@ -37,6 +45,14 @@ const router = new VueRouter({
         {path: "/work", component: work, meta: {title: 'work'}},
         {path: "/statue", component: statue, meta: {title:'statue'}},
         {path: "/modelmge", component: modelmge, meta: {title:'modelmge'}},
+        {path: "/Device", component:DeviceManager, meta: {title:'DeviceManager'}},
+        {path: "/TimeData", component: TimeSeriesDB, meta: {title: 'TimeSeriesDB'}},
+        {path: "/robot_track", component: robot_track, meta: {title: 'robot_track'}},
+        {path: "/work_list", component: work_list, meta: {title: 'work_list'}},
+        {path: "/TingModelManage", component: TingModelManage, meta: {title: 'TingModelManage'}},
+        {path: "/EdgeManagement", component: EdgeManagement, meta: {title: 'EdgeManagement'}},
+        {path: "/SceneLinkage", component: SceneLinkage, meta: {title: 'ScenceLinkage'}},
+        {path: "/AdvancedDataTransform", component: AdvancedDataTransform, meta: {title: 'AdvancedDataTransform'}}
     ],
     mode: "history",
 })

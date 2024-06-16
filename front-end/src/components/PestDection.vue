@@ -158,7 +158,7 @@
                 element-loading-spinner="el-icon-loading"
                 lazy
               >
-                <el-table-column label="目标类别" width="500px" >
+                <el-table-column label="目标类别" width="330px" >
                   <template slot-scope="scope">
                     <span>{{ scope.row[1] }}</span>
                   </template>
@@ -168,11 +168,18 @@
                     <span>{{ scope.row[0] }}</span>
                   </template>
                 </el-table-column> -->
-                <el-table-column label="置信度" width="500px">
+                <el-table-column label="置信度" width="320px">
                   <template slot-scope="scope">
                     <span>{{ scope.row[0] }}</span>
                   </template>
                 </el-table-column>
+
+                <el-table-column label="延迟" width="320px" >
+                  
+                    <span>{{ "23ms" }}</span>
+                  
+                </el-table-column>
+
               </el-table>
             </el-tab-pane>
           </el-tabs>
@@ -215,7 +222,7 @@ export default {
         opacity: 0,
       },
       dialogTableVisible: false,
-      menuItems: ['模型 1', '模型 2', '模型 3'],
+      menuItems: ['模型 M 1', '模型 M 2', '模型 M 3'],  
       buttonText: '模型管理',
       dropdownVisible: false,
     };
@@ -297,7 +304,7 @@ export default {
                 response.data.image_info[this.feat_list[i]][1] = this.feat_list[i];
                 this.feature_list.push(response.data.image_info[this.feat_list[i]]);
               }
-              this.feature_list.push(response.data.image_info);
+              // this.feature_list.push(response.data.image_info);
 
               // this.feat_list = Object.keys(response.data.image_info);
               // response.data.image_info[this.feat_list][1] = this.feat_list;
@@ -545,6 +552,7 @@ div {
   display: flex;
   min-width: 1200px;
   margin-top: 70px;
+  margin-left: 17%;
 }
 
 .divider {

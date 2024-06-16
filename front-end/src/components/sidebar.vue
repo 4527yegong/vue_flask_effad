@@ -48,18 +48,18 @@
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
                        <!-- <i class="layui-icon layui-icon-face-smile" style="font-size: 20px; color: #1E9FFF;margin-right: 8px;"></i>  -->
                         <a href="javascript:;" class="dropbtn" @click="goto_1" style="height: 50px;">病虫害检测</a>
-
                         <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_1">
                             <dd v-for="type in types_1" :key="type" style="  margin-left: 15%;">
-                                <a href="javascript:;">{{ type }}</a>
+                                <a href="javascript:;" >{{ type }}</a>
+
                             </dd>
                         </dl> -->
                     </li>
+                   
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
                       <!-- <i class="layui-icon layui-icon-user" style="font-size: 20px; color: #1E9FFF;"></i>  -->
                       <a href="javascript:;" class="dropbtn" @click="goto_10" style="height: 50px;">检测模型管理</a>
                     </li>
-
 
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
                         <a href="javascript:;" class="dropbtn" @click="goto_2" style="height: 50px;">机器人状态</a>
@@ -71,7 +71,7 @@
                     </li>
 
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                        <a href="javascript:;" class="dropbtn" @click="goto_2" style="height: 50px;">机器人行动轨迹</a>
+                        <a href="javascript:;" class="dropbtn" @click="goto_11" style="height: 50px;">机器人行动轨迹</a>
                         <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_2">
                             <dd v-for="type in types_2" :key="type"  style="  margin-left: 15%;">
                                 <a href="javascript:;">{{ type }}</a>
@@ -103,6 +103,9 @@
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
                       <a href="javascript:;" class="dropbtn" @click="goto_9" style="height: 50px;">场景联动</a>
                     </li>
+                    <!-- <li class="layui-nav-item" style="display: flex;  align-items: center;margin-left: 10% ;">
+                      <a href="javascript:;" class="dropbtn" @click="goto_12" style="height: 50px;">高级数据转换</a>
+                    </li> -->
                 </ul>
             </div>
         </div> 
@@ -178,7 +181,7 @@ export default {
       this.$router.push({ path: '/Tenant' });
     },
     goto_4() {
-      this.$router.push({ path: '/work' });
+      this.$router.push({ path: '/work_list' });
     },
     goto_5() {
       this.$router.push({ path: '/TimeData' });
@@ -187,32 +190,43 @@ export default {
       this.$router.push({ path: '/Device' });
     },
     goto_7() {
-      this.$router.push({ path: '/ThingModel' });
+      this.$router.push({ path: '/TingModelManage' });
     },
     goto_8() {
-      this.$router.push({ path: '/Edge' });
+      this.$router.push({ path: '/EdgeManagement' });
     },
     goto_9() {
-      this.$router.push({ path: '/Scene' });
+      this.$router.push({ path: '/SceneLinkage' });
     },
     goto_10() {
       this.$router.push({ path: '/modelmge' });
     },
+    goto_11() {
+      this.$router.push({ path: '/robot_track' });
+    },
+    goto_12() {
+      this.$router.push({ path: '/AdvancedDataTransform' }); 
+    },
   },
-  
 };
 </script>
 
 <style scoped>
-@import url("D:\lib_project\pycharm_project\Yolov5-Flask-VUE\front-end\layui\css\layui.css");
-.layui-nav-child {
-  display: none; /* 默认隐藏下拉菜单 */
-  
-}
+@import url("C:\Users\lianlong\Desktop\Yolov5-Flask-VUE\front-end\layui\css\layui.css");
+
+
+/* 只定义一次 .layui-nav-child，移除重复的定义 */
 .layui-nav-itemed > .layui-nav-child {
-  display: block; /* 当导航项激活时显示下拉菜单 */
-  
+  position: absolute;
+  top: 100%; /* 使下拉菜单显示在导航项的下方 */
+  left: 0;
+  z-index: 1000;
+  display: none; /* 初始状态为隐藏，由 Vue 的 v-show 控制显示 */
 }
+
+
+
+
 .el-button {
   padding: 12px 20px !important;
 }
@@ -233,12 +247,13 @@ export default {
 .dropbtn {
 
   color: white;
-  padding: 0px;
+  padding: 5px;
   font-size: 16px;
   border: none;
   position: relative;
   display: inline-block;
   margin-left: 0;
+  height: 40px;
 }
 
 /* 下拉菜单内容（隐藏起来）*/

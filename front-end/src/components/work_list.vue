@@ -1,34 +1,39 @@
 <template>
     <div id="app" class="container">
       <div class="table-container">
-        <el-button type="primary" @click="addRow_admin">创建新模型</el-button>
-        <el-button type="primary" @click="addRow_user">导入本地模型</el-button>
+        <el-button type="primary" @click="addRow_admin">创建新机器人作业</el-button>
+        <el-button type="primary" @click="addRow_user">导入新作业</el-button>
         <el-table
           :data="tableData"
           style="width: 100%; margin-top: 10px;"
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55"></el-table-column>
-          <el-table-column prop="num" label="编号" width="180"></el-table-column>
-          <el-table-column prop="name" label="模型名" width="180"></el-table-column>
-          <el-table-column prop="time" label="更新时间" width="180"></el-table-column>
+          <el-table-column prop="num" label="编号" width="100"></el-table-column>
+          <el-table-column prop="name" label="作业名" width="100"></el-table-column>
+          <el-table-column prop="batch1" label="批次 1" width="90"></el-table-column>
+          <el-table-column prop="batch2" label="批次 2" width="90"></el-table-column>
+          <el-table-column prop="batch3" label="批次 3" width="90"></el-table-column>
+          <el-table-column prop="batch4" label="批次 4" width="90"></el-table-column>
+          <el-table-column prop="batch5" label="批次 5" width="90"></el-table-column>
+          <!-- <el-table-column prop="time" label="批次 1" width="180"></el-table-column> -->
           <!-- <el-table-column prop="num" label="租赁机器数" width="180"></el-table-column> -->
-          <el-table-column label="操作" width="300">
+          <el-table-column label="操作" width="450">
             <template slot-scope="scope">
-              <div style="display: flex; gap: 8px;">
+              <div style="display: flex; gap: 10px;">
                 <el-button
                   size="mini"
                   @click="editRow(scope.row)"
                 >编辑</el-button>
                 <el-button
                   size="mini"
-                  @click="editRow(scope.row)"
-                >导入权重</el-button>
+                  @click="goto_1"
+                >图表导出</el-button>
                 <el-button
                   size="mini"
                   type="danger"
                   @click="deleteRow(scope.$index, scope.row)"
-                >删除</el-button>
+                >作业删除</el-button>
               </div>
             </template>
           </el-table-column>
@@ -42,15 +47,18 @@
     data() {
       return {
         tableData: [
-          { name: 'vit 模型', num: 'M 1' ,time:"2024-6-16"},
-          { name: 'yolo5 模型', num: 'M 2',time:"2024-6-15" },
-          { name: 'arol 模型', num: 'M 3',time:"2024-5-30" },
+          { name: '作业 1 ', num: 'J 1' ,batch1:"1048",batch2:"736",batch3:"580",batch4:"484",batch5:"300" },
+          { name: '作业 2 ', num: 'J 2',batch1:"26",batch2:"587",batch3:"485",batch4:"369",batch5:"475" },
+          { name: '作业 3 ', num: 'J 3',batch1:"2143",batch2:"586",batch3:"125",batch4:"74",batch5:"963" },
           // { name: 'David', num: '模型4',time:"2024-6-16" },
         ],
         selectedRow: null, // 用于存储选中行的数据
       };
     },
     methods: {
+      goto_1() {
+        this.$router.push({ path: '/work' });
+      },
       addRow_admin() {
         const newRow = { name: '', authority: '管理员', num: '' };
         this.tableData.push(newRow);
