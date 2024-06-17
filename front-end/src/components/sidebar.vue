@@ -81,6 +81,12 @@
 
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
                       <!-- <i class="layui-icon layui-icon-user" style="font-size: 20px; color: #1E9FFF;"></i>  -->
+                      <a href="javascript:;" class="dropbtn" @click="goto_13" style="height: 50px;">机器人接口</a>
+                    </li>
+
+
+                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+                      <!-- <i class="layui-icon layui-icon-user" style="font-size: 20px; color: #1E9FFF;"></i>  -->
                       <a href="javascript:;" class="dropbtn" @click="goto_3" style="height: 50px;">多租户管理</a>
                     </li>
 
@@ -206,6 +212,9 @@ export default {
     },
     goto_12() {
       this.$router.push({ path: '/AdvancedDataTransform' }); 
+    },
+    goto_13() {
+      this.$router.push({ path: '/robot_interface' });
     },
   },
 };

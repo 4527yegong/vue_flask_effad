@@ -1,8 +1,40 @@
 <template>
     <div id="app" class="container">
       <div class="table-container">
-        <el-button type="primary" @click="addRow_admin">创建新机器人作业</el-button>
-        <el-button type="primary" @click="addRow_user">导入新作业</el-button>
+        <!-- <el-button type="primary" @click="addRow_admin">创建新机器人作业</el-button>
+        <el-button type="primary" @click="addRow_user">导入新作业</el-button> -->
+
+              <!-- 按钮组 -->
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div >
+            <el-button type="primary" @click="addRow_admin">创建新机器人作业</el-button>
+            <el-button type="primary" @click="addRow_user">导入新作业</el-button>
+          </div>
+          <div>
+            <!-- 时间查询表单 -->
+            <!-- <el-form :inline="true" class="query-form" style="margin-top: 20px; ">
+              <el-form-item label="起始时间">
+                <el-date-picker
+                  v-model="queryStartTime"
+                  type="datetime"
+                  placeholder="选择起始时间">
+                </el-date-picker>
+              </el-form-item>
+              <el-form-item label="结束时间">
+                <el-date-picker
+                  v-model="queryEndTime"
+                  type="datetime"
+                  placeholder="选择结束时间">
+                </el-date-picker>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="handleQuery">查询</el-button>
+              </el-form-item>
+            </el-form> -->
+
+          </div>
+        </div>
+
         <el-table
           :data="tableData"
           style="width: 100%; margin-top: 10px;"
@@ -171,5 +203,8 @@
   
   .el-table tr:hover {
     background-color: #f5f5f5; /* 鼠标悬浮背景色 */
+  }
+  .query-form {
+    margin-bottom: 20px;
   }
   </style>

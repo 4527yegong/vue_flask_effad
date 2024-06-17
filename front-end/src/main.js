@@ -30,6 +30,7 @@ import TingModelManage from './components/ThingModelManager.vue'
 import EdgeManagement from './components/EdgeManagement.vue'
 import SceneLinkage from './components/SceneLinkage.vue'
 import AdvancedDataTransform from './components/AdvancedDataTransform.vue'
+import robot_interface from './components/robot_interface.vue'
 
 Vue.use(Element)
 Vue.config.productionTip = false// 对于 JavaScript 文件，应该使用如下语法
@@ -52,7 +53,8 @@ const router = new VueRouter({
         {path: "/TingModelManage", component: TingModelManage, meta: {title: 'TingModelManage'}},
         {path: "/EdgeManagement", component: EdgeManagement, meta: {title: 'EdgeManagement'}},
         {path: "/SceneLinkage", component: SceneLinkage, meta: {title: 'ScenceLinkage'}},
-        {path: "/AdvancedDataTransform", component: AdvancedDataTransform, meta: {title: 'AdvancedDataTransform'}}
+        {path: "/AdvancedDataTransform", component: AdvancedDataTransform, meta: {title: 'AdvancedDataTransform'}},
+        {path: "/robot_interface", component: robot_interface, meta: {title: 'robot_interface'}}
     ],
     mode: "history",
 })

@@ -552,7 +552,7 @@ div {
   display: flex;
   min-width: 1200px;
   margin-top: 70px;
-  margin-left: 17%;
+  margin-left: 12%;
 }
 
 .divider {
