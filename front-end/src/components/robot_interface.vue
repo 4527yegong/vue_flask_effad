@@ -1,105 +1,96 @@
 <template>
-    <div id="app" class="container">>
-      <div class="table-container">
-        <h1>机器人数据接口</h1>
-        <InterfaceSelector @select="handleInterfaceSelect"/>
-        <RobotSelector @select="handleRobotSelect"/>
-        <Message v-for="(message, index) in messages" :key="index" :content="message"/>
-        <InputBox @submit="sendMessage"/>
-
+  <div id="app" class="container">
+   <div class="table-container">
+     <!-- <h2 class=" title">机器人数据接口</h2> -->
+      <div style="margin-bottom: 20px;">
+        <el-button type="primary" @click="addRow_admin" style="font-size: 16px;">机器人数据接口</el-button>
       </div>
-    </div>
-  </template>
-  
-  <script>
-import InterfaceSelector from './robot_interface/InterfaceSelector.vue';
-import RobotSelector from './robot_interface/RobotSelector.vue';
-import Message from './robot_interface/Message.vue';
-import InputBox from './robot_interface/InputBox.vue';
-import axios from 'axios';
+     <div class="robot-data-interface" >
+       <el-select v-model="robotType" placeholder="请选择机器人类型">
+         <el-option label="Fanuc" value="chatbot"></el-option>
+         <el-option label="ABB" value="industrial"></el-option>
+         <el-option label="KUKA" value="service"></el-option>
+       </el-select>
 
+       <el-select v-model="protocolType" placeholder="请选择通讯协议类型">
+         <el-option label="HTTP" value="http"></el-option>
+         <el-option label="WebSocket" value="websocket"></el-option>
+         <el-option label="MQTT" value="mqtt"></el-option>
+       </el-select>
+       <el-select v-model="protocolType" placeholder="请选择数据协议类型">
+         <el-option label="CVS 数据" value="http"></el-option>
+         <el-option label="JSON 数据" value="websocket"></el-option>
+         <el-option label="XML 数据" value="mqtt"></el-option>
+       </el-select>
 
+       <el-upload
+         class="upload-demo"
+         drag
+         action="/upload"
+         multiple
+         :on-success="handleUploadSuccess"
+         :before-upload="beforeUpload">
+         <i class="el-icon-upload"></i>
+         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+         <div class="el-upload__tip" slot="tip"></div>
+       </el-upload>
+     </div>
+   </div>
+ </div>
+</template>
+
+<script>
 export default {
-  data() {
-    return {
-      messages: [],
-      selectedInterface: 'rest',
-      selectedRobot: 'fanuc'
-    };
-  },
-  components: {
-    InterfaceSelector,
-    RobotSelector,
-    Message,
-    InputBox
-  },
-  methods: {
-    async sendMessage(inputText) {
-      try {
-        let response;
-        switch (this.selectedInterface) {
-          case 'rest':
-            response = await this.sendRestRequest(inputText);
-            break;
-          case 'websocket':
-            response = await this.sendWebSocketRequest(inputText);
-            break;
-          // 可添加更多接口类型的处理逻辑
-          default:
-            throw new Error('未知接口类型');
-        }
-        this.messages.push(response.data.reply);
-      } catch (error) {
-        // console.error('Error sending message:', error);
-        this.messages.push('Error: ' + error.message);
-      }
-    },
-    handleInterfaceSelect(interfaceType) {
-      this.selectedInterface = interfaceType;
-    },
-    handleRobotSelect(robotType) {
-      this.selectedRobot = robotType;
-    },
-    async sendRestRequest(inputText) {
-      const response = await axios.post(`/api/${this.selectedRobot}/query`, { text: inputText });
-      return response;
-    },
-    async sendWebSocketRequest() {
-      // WebSocket请求的实现
-    }
-  }
+ data() {
+   return {
+     robotType: '',
+     protocolType: ''
+   };
+ },
+ methods: {
+   handleUploadSuccess(/*response, file, fileList*/) {
+     this.$message.success('上传成功');
+     // 处理上传成功后的逻辑，例如展示上传结果或发送数据到后端
+   },
+   beforeUpload(file) {
+     if (!file.raw.type.includes('directory')) {
+       this.$message.error('只能上传文件夹');
+       return false;
+     }
+     return true;
+   }
+ }
 };
 </script>
-  
-  <style scoped>
-  .container {
-    display: flex;
-    height: 100vh;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 5%;
-  }
-  
-  .table-container {
-    flex: 1;
-    /* display: flex; */
-    align-items: center; 
-    justify-content: center;
-    height: 1000px;
-    width: 800px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #e6e6e6; /* 表格外框 */
-    border-radius: 4px; /* 边框圆角 */
-    padding: 10px;
-    background-color: #fff; /* 背景色 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影 */
-    margin-left: 10%;
-  }
-  
-  .el-button {
-    margin-right: 10px; /* 按钮间距 */
-  }
 
+<style>
+ .container {
+   margin-left: 15%;
+   margin-top: 5%;
+ }
  
-  </style>
+ .table-container {
+   border: 1px solid #e6e6e6; /* 表格外框 */
+   border-radius: 4px; /* 边框圆角 */
+   padding: 10px;
+   background-color: #fff; /* 背景色 */
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影 */
+ }
+.robot-data-interface {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.upload-demo {
+ margin-top: 20px;
+}
+.title {
+  width: px;
+    background-color: #2cafc1;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+</style>

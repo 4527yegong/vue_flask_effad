@@ -9,9 +9,11 @@
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55"></el-table-column>
-          <el-table-column prop="name" label="租户名" width="180"></el-table-column>
-          <el-table-column prop="authority" label="权限" width="180"></el-table-column>
-          <el-table-column prop="num" label="租赁机器数" width="180"></el-table-column>
+          <el-table-column prop="name" label="租户名" width="160"></el-table-column>
+          <el-table-column prop="authority" label="权限" width="160"></el-table-column>
+          <el-table-column prop="num_machine" label="总租赁机器数" width="160"></el-table-column>
+          <el-table-column prop="num_using" label="在使用机器数" width="160"></el-table-column>
+          <el-table-column prop="num_remain" label="剩余可使用机器数" width="160"></el-table-column>
           <el-table-column label="操作" width="180">
             <template slot-scope="scope">
               <div style="display: flex; gap: 8px;">
@@ -37,10 +39,10 @@
     data() {
       return {
         tableData: [
-          { name: 'Alice', authority: '管理员', num: 20 },
-          { name: 'Bob', authority: '普通用户', num: 5 },
-          { name: 'Carol', authority: '普通用户', num: 7 },
-          { name: 'David', authority: '普通用户', num: 2 },
+          { name: 'Alice', authority: '管理员', num_machine: 100, num_using: 69, num_remain: 31 },
+          { name: 'Bob', authority: '普通用户', num_machine: 50, num_using: 36, num_remain: 14 },
+          { name: 'Carol', authority: '普通用户', num_machine: 30, num_using: 22, num_remain: 8 },
+          { name: 'David', authority: '普通用户', num_machine: 20, num_using: 11, num_remain: 9 },
         ],
         selectedRow: null, // 用于存储选中行的数据
       };
