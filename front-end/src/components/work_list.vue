@@ -16,13 +16,13 @@
 
         <el-table :data="tableData" style="width: 100%">
           <el-table-column type="selection" width="55"></el-table-column>
-          <el-table-column prop="num" label="编号" width="180">
+          <el-table-column prop="num" label="编号" width="120">
             <template slot-scope="scope">
               <span v-if="!scope.row.editable">{{ scope.row.name }}</span>
               <el-input v-else v-model="scope.row.name"></el-input>
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="作业名" width="180">
+          <el-table-column prop="name" label="作业名" width="120">
             <template slot-scope="scope">
               <span v-if="!scope.row.editable">{{ scope.row.name }}</span>
               <el-input v-else v-model="scope.row.name"></el-input>

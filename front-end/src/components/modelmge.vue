@@ -35,7 +35,8 @@
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button @click="handleEdit(scope.row)" size="mini" type="primary">{{ scope.row.editable ? '保存' : '编辑' }}</el-button>
-              <el-button  size="mini" type="primary">导入权重</el-button>
+              <el-button  size="mini" type="primary">部署</el-button>
+              <el-button  size="mini" type="primary">模型更新</el-button>
               <el-button @click="deleteRow(scope.$index, scope.row)" size="mini" type="danger">删除 </el-button>
             </template>
           </el-table-column>
