@@ -31,6 +31,8 @@ import EdgeManagement from './components/EdgeManagement.vue'
 import SceneLinkage from './components/SceneLinkage.vue'
 import AdvancedDataTransform from './components/AdvancedDataTransform.vue'
 import robot_interface from './components/robot_interface.vue'
+import DatabaseTable from './components/DatabaseTable.vue'
+import work_vidoe from './components/work_vidoe.vue'
 
 Vue.use(Element)
 Vue.config.productionTip = false// 对于 JavaScript 文件，应该使用如下语法
@@ -54,7 +56,9 @@ const router = new VueRouter({
         {path: "/EdgeManagement", component: EdgeManagement, meta: {title: 'EdgeManagement'}},
         {path: "/SceneLinkage", component: SceneLinkage, meta: {title: 'ScenceLinkage'}},
         {path: "/AdvancedDataTransform", component: AdvancedDataTransform, meta: {title: 'AdvancedDataTransform'}},
-        {path: "/robot_interface", component: robot_interface, meta: {title: 'robot_interface'}}
+        {path: "/robot_interface", component: robot_interface, meta: {title: 'robot_interface'}},
+        {path: "/DatabaseTable", component: DatabaseTable, meta: {title: 'DatabaseTable'}},
+        {path: "/work_vidoe", component: work_vidoe, meta: {title: 'work_vidoe'}}
     ],
     mode: "history",
 })

@@ -109,6 +109,9 @@
                     <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
                       <a href="javascript:;" class="dropbtn" @click="goto_9" style="height: 50px;">场景联动</a>
                     </li>
+                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">   
+                      <a href="javascript:;" class="dropbtn" @click="goto_14" style="height: 50px;">数据库表管理</a>
+                    </li>
                     <!-- <li class="layui-nav-item" style="display: flex;  align-items: center;margin-left: 10% ;">
                       <a href="javascript:;" class="dropbtn" @click="goto_12" style="height: 50px;">高级数据转换</a>
                     </li> -->
@@ -215,6 +218,9 @@ export default {
     },
     goto_13() {
       this.$router.push({ path: '/robot_interface' });
+    },
+    goto_14() {
+      this.$router.push({ path: '/DatabaseTable' });
     },
   },
 };

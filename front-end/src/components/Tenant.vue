@@ -3,33 +3,51 @@
       <div class="table-container">
         <el-button type="primary" @click="addRow_admin">添加管理员</el-button>
         <el-button type="primary" @click="addRow_user">添加普通用户</el-button>
-        <el-table
-          :data="tableData"
-          style="width: 100%; margin-top: 10px;"
-          @selection-change="handleSelectionChange"
-        >
+          
+        <el-table :data="tableData" style="width: 100%">
           <el-table-column type="selection" width="55"></el-table-column>
-          <el-table-column prop="name" label="租户名" width="160"></el-table-column>
-          <el-table-column prop="authority" label="权限" width="160"></el-table-column>
-          <el-table-column prop="num_machine" label="总租赁机器数" width="160"></el-table-column>
-          <el-table-column prop="num_using" label="在使用机器数" width="160"></el-table-column>
-          <el-table-column prop="num_remain" label="剩余可使用机器数" width="160"></el-table-column>
-          <el-table-column label="操作" width="180">
+          <el-table-column prop="name" label="租户名" width="180">
             <template slot-scope="scope">
-              <div style="display: flex; gap: 8px;">
-                <el-button
-                  size="mini"
-                  @click="editRow(scope.row)"
-                >编辑</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="deleteRow(scope.$index, scope.row)"
-                >删除</el-button>
-              </div>
+              <span v-if="!scope.row.editable">{{ scope.row.name }}</span>
+              <el-input v-else v-model="scope.row.name"></el-input>
             </template>
           </el-table-column>
+          <el-table-column prop="authority" label="权限" width="180">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.authority }}</span>
+              <el-input v-else v-model="scope.row.authority"></el-input>
+            </template>
+          </el-table-column>
+          <el-table-column prop="num_machine" label="总租赁机器数" width="180">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.num_machine }}</span>
+              <el-input v-else v-model="scope.row.num_machine"></el-input>
+            </template>
+          </el-table-column>
+          <el-table-column prop="num_using" label="在使用机器数" width="180">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.num_using }}</span>
+              <el-input v-else v-model="scope.row.num_using"></el-input>
+            </template>
+          </el-table-column>
+          <el-table-column prop="num_remain" label="剩余可使用机器数" width="180">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.num_remain }}</span>
+              <el-input v-else v-model="scope.row.num_remain"></el-input>
+            </template>
+          </el-table-column>
+
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button @click="handleEdit(scope.row)" size="mini" type="primary">{{ scope.row.editable ? '保存' : '编辑' }}</el-button>
+              <el-button @click="deleteRow(scope.$index, scope.row)" size="mini" type="danger">删除 </el-button>
+            </template>
+          </el-table-column>
+
+
         </el-table>
+
+
       </div>
     </div>
   </template>
@@ -39,92 +57,30 @@
     data() {
       return {
         tableData: [
-          { name: 'Alice', authority: '管理员', num_machine: 100, num_using: 69, num_remain: 31 },
-          { name: 'Bob', authority: '普通用户', num_machine: 50, num_using: 36, num_remain: 14 },
-          { name: 'Carol', authority: '普通用户', num_machine: 30, num_using: 22, num_remain: 8 },
-          { name: 'David', authority: '普通用户', num_machine: 20, num_using: 11, num_remain: 9 },
+          { name: 'Alice', authority: '管理员', num_machine: 100, num_using: 69, num_remain: 31, editable: false },
+          { name: 'Bob', authority: '普通用户', num_machine: 50, num_using: 36, num_remain: 14, editable: false },
+          { name: 'Carol', authority: '普通用户', num_machine: 30, num_using: 22, num_remain: 8, editable: false },
+          { name: 'David', authority: '普通用户', num_machine: 20, num_using: 11, num_remain: 9 , editable: false },
         ],
         selectedRow: null, // 用于存储选中行的数据
       };
     },
     methods: {
       addRow_admin() {
-        const newRow = { name: '', authority: '管理员', num: '' };
-        this.tableData.push(newRow);
-        this.selectedRow = newRow;
-      },
-      addRow_user() {
-        const newRow = { name: '', authority: '普通用户', num: '' };
-        this.tableData.push(newRow);
-        this.selectedRow = newRow;
-      },
-      editRow(row) {
-        let editDataString = JSON.stringify({
-            name: row.name,
-            num: row.num,
-            authority: row.authority,
-        });
-
-        this.$prompt('请输入新信息', '编辑', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            inputValidator: (input) => {
-            // 尝试将输入转换为JSON对象
-            try {
-                let inputObject = JSON.parse(input);
-                // 验证输入对象的属性
-                if (!inputObject.name) return '用户名不能为空';
-                if (!inputObject.num) return '数量不能为空';
-                if (!inputObject.authority) return '权限不能为空';
-            } catch (e) {
-                // 如果输入不是有效的JSON，返回错误信息
-                return '输入的值不是有效的JSON';
-            }
-            return true;
-            },
-            inputValue: editDataString // 将对象转换为字符串作为初始输入值
-        }).then(({ value }) => {
-            // 更新 row 对象的属性
-            let newValues = JSON.parse(value);
-            row.name = newValues.name;
-            row.num = newValues.num;
-            row.authority = newValues.authority;
-        }).catch(() => {
-            // 用户取消操作时的反馈
-            this.$message({
-            message: '编辑已取消',
-            type: 'info'
-            });
-        });
-        },
-      deleteRow(index) {
-        this.tableData.splice(index, 1);
-      },
-      confirmDelete() {
-        if (!this.selectedRow) {
-          this.$message({
-            message: '请先选择要删除的行',
-            type: 'warning',
-          });
-          return;
+      this.tableData.push({ name: 'New Admin', authority: '管理员', num_machine: 0, num_using: 0, num_remain: 0, editable: false });
+    },
+    addRow_user() {
+      this.tableData.push({ name: 'New User', authority: '普通用户', num_machine: 0, num_using: 0, num_remain: 0, editable: false });
+    },
+      handleEdit(row) {
+        row.editable = !row.editable; // 切换编辑状态
+        if (!row.editable) {
+          // 在这里可以进行保存操作，比如调用 API 将修改后的数据提交到后端
+        //   console.log('保存数据：', row);
         }
-        this.$confirm('此操作将永久删除该行, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        }).then(() => {
-          this.deleteRow(this.tableData.indexOf(this.selectedRow));
-          this.selectedRow = null;
-          this.$message({
-            type: 'success',
-            message: '删除成功!',
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除',
-          });
-        });
+      },
+      deleteRow(index, /* row */) {
+        this.tableData.splice(index, 1); // 从 tableData 数组中移除指定索引的行
       },
       handleSelectionChange(selection) {
         this.selectedRow = selection.length > 0 ? selection[0] : null;

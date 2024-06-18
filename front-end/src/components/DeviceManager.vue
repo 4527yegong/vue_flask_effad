@@ -3,16 +3,28 @@
       <div class="table-container">
         <el-button type="primary" @click="addRow_admin">创建新设备</el-button>
         <el-button type="primary" @click="addRow_user">导入新设备</el-button>
-        <el-table
-          :data="tableData"
-          style="width: 100%; margin-top: 10px;"
-          @selection-change="handleSelectionChange"
-        >
+
+        <el-table :data="tableData" style="width: 100%">
           <el-table-column type="selection" width="55"></el-table-column>
-          <el-table-column prop="num" label="编号" width="130"></el-table-column>
-          <el-table-column prop="name" label="设备名" width="130"></el-table-column>
-          <el-table-column prop="time" label="设备更新时间" width="180"></el-table-column>
-          
+          <el-table-column prop="num" label="编号" width="140">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.num }}</span>
+              <el-input v-else v-model="scope.row.num"></el-input>
+            </template>
+          </el-table-column>
+          <el-table-column prop="name" label="设备名" width="140">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.name }}</span>
+              <el-input v-else v-model="scope.row.name"></el-input>
+            </template>
+          </el-table-column>
+          <el-table-column prop="time" label="设备更新时间" width="160">
+            <template slot-scope="scope">
+              <span v-if="!scope.row.editable">{{ scope.row.time }}</span>
+              <el-input v-else v-model="scope.row.time"></el-input>
+            </template>
+          </el-table-column>
+
           <el-table-column label="启动/停止" width="160">
             <template slot-scope="scope">
               <div style="display: flex; gap: 10px;">
@@ -26,28 +38,19 @@
             </template>
           </el-table-column>
           
-          <!-- <el-table-column prop="num" label="租赁机器数" width="180"></el-table-column> -->
-          <el-table-column label="操作" width="450">
+
+          <el-table-column label="操作">
             <template slot-scope="scope">
-              <div style="display: flex; gap: 10px;">
-                <el-button
+              <el-button @click="handleEdit(scope.row)" size="mini" type="primary">{{ scope.row.editable ? '保存' : '编辑' }}</el-button>
+              <el-button
                   size="mini"
-                  @click="editRow(scope.row)"
-                >编辑</el-button>
-                <el-button
-                  size="mini"
-                  @click="editRow(scope.row)"
+                  @click="goto_1"
                 >设备升级</el-button>
                 <el-button
                   size="mini"
-                  @click="deleteRow(scope.$index, scope.row)"
+                  @click="goto_2"
                 >设备调试</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="deleteRow(scope.$index, scope.row)"
-                >设备删除</el-button>
-              </div>
+              <el-button @click="deleteRow(scope.$index, scope.row)" size="mini" type="danger">删除 </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -61,9 +64,9 @@
       return {
         value_1: true,
         tableData: [
-          { name: '设备 1 ', num: 'D 1' ,time:"2024-6-16"},
-          { name: '设备 2 ', num: 'D 2',time:"2024-6-15" },
-          { name: '设备 3 ', num: 'D 3',time:"2024-5-30" },
+          { name: '设备 1 ', num: 'D 1' ,time:"2024-6-16", isActive: true, editable: false },
+          { name: '设备 2 ', num: 'D 2',time:"2024-6-15" , isActive: false, editable: false },
+          { name: '设备 3 ', num: 'D 3',time:"2024-5-30" , isActive: false, editable: false } ,
           // { name: 'David', num: '模型4',time:"2024-6-16" },
         ],
         selectedRow: null, // 用于存储选中行的数据
@@ -71,82 +74,19 @@
     },
     methods: {
       addRow_admin() {
-        const newRow = { name: '', authority: '管理员', num: '' };
-        this.tableData.push(newRow);
-        this.selectedRow = newRow;
+        this.tableData.push({ name: '新设备', num: 'D ' + (this.tableData.length + 1), time: new Date().toLocaleDateString() , editable: false });
       },
       addRow_user() {
-        const newRow = { name: '', authority: '普通用户', num: '' };
-        this.tableData.push(newRow);
-        this.selectedRow = newRow;
+        this.tableData.push({ name: '新模型', num: 'D ' + (this.tableData.length + 1), time: "11", editable: false });
       },
-      editRow(row) {
-        let editDataString = JSON.stringify({
-            name: row.name,
-            num: row.num,
-            authority: row.authority,
-        });
-
-        this.$prompt('请输入新信息', '编辑', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            inputValidator: (input) => {
-            // 尝试将输入转换为JSON对象
-            try {
-                let inputObject = JSON.parse(input);
-                // 验证输入对象的属性
-                if (!inputObject.name) return '用户名不能为空';
-                if (!inputObject.num) return '数量不能为空';
-                if (!inputObject.authority) return '权限不能为空';
-            } catch (e) {
-                // 如果输入不是有效的JSON，返回错误信息
-                return '输入的值不是有效的JSON';
-            }
-            return true;
-            },
-            inputValue: editDataString // 将对象转换为字符串作为初始输入值
-        }).then(({ value }) => {
-            // 更新 row 对象的属性
-            let newValues = JSON.parse(value);
-            row.name = newValues.name;
-            row.num = newValues.num;
-            row.authority = newValues.authority;
-        }).catch(() => {
-            // 用户取消操作时的反馈
-            this.$message({
-            message: '编辑已取消',
-            type: 'info'
-            });
-        });
-        },
-      deleteRow(index) {
-        this.tableData.splice(index, 1);
-      },
-      confirmDelete() {
-        if (!this.selectedRow) {
-          this.$message({
-            message: '请先选择要删除的行',
-            type: 'warning',
-          });
-          return;
+      handleEdit(row) {
+        row.editable = !row.editable; // 切换编辑状态
+        if (!row.editable) {
+          // 在这里可以进行保存操作，比如调用 API 将修改后的数据提交到后端
         }
-        this.$confirm('此操作将永久删除该行, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning',
-        }).then(() => {
-          this.deleteRow(this.tableData.indexOf(this.selectedRow));
-          this.selectedRow = null;
-          this.$message({
-            type: 'success',
-            message: '删除成功!',
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除',
-          });
-        });
+      },
+      deleteRow(index, /* row */) {
+        this.tableData.splice(index, 1); // 从 tableData 数组中移除指定索引的行
       },
       handleSelectionChange(selection) {
         this.selectedRow = selection.length > 0 ? selection[0] : null;

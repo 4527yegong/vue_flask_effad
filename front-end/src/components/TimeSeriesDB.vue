@@ -21,6 +21,7 @@
           <el-form-item>
             <el-button type="primary" @click="handleQuery">查询</el-button>
           </el-form-item>
+          <el-button type="primary" @click="goto_1">查看数据库</el-button>
         </el-form>
       </el-header>
 
@@ -95,7 +96,10 @@
         // 处理导出数据的逻辑
         // 示例中省略具体实现
         // console.log('导出数据');
-      }
+      },
+      goto_1() {
+        this.$router.push({ path: '/DatabaseTable' });
+      },
     }
   };
 </script>
