@@ -11,8 +11,6 @@
           <el-table-column prop="name" label="模型名" width="180"></el-table-column>
           <el-table-column prop="time" label="更新时间" width="180"></el-table-column> -->
 
-          <el-table :data="tableData" style="width: 100%">
-
           <el-table-column prop="name" label="模型名" width="180">
             <template slot-scope="scope">
               <span v-if="!scope.row.editable">{{ scope.row.name }}</span>
@@ -34,7 +32,6 @@
               <el-button @click="deleteRow(scope.$index, scope.row)" size="mini" type="danger">删除 </el-button>
             </template>
           </el-table-column> 
-        </el-table>
         </el-table>
       </div>
     </div>

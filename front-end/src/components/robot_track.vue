@@ -2,7 +2,7 @@
 
 <template>
     <div id="app" class="container">
-      <div class="parent-container" style="width: auto; height: 1000px; display: flex; flex-direction: column;">
+      <div class="parent-container" style="flex-grow: 1; max-width: auto; height: 1000px; display: flex; flex-direction: column;">
         <!-- 按钮和查询表单容器 -->
         <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
           <!-- 按钮组 -->
@@ -29,6 +29,7 @@
                   <el-form-item>
                       <el-button type="primary" @click="handleQuery">查询</el-button>
                   </el-form-item>
+                 
               </el-form>
             </div> 
 
@@ -85,6 +86,7 @@
 
   <script>
   export default  ({
+
     data() {
       return {
         queryStartTime: '',
@@ -150,35 +152,42 @@
 
   </script>
 
-    <style scoped>
-    .container {
-      margin-left: 16%;
-      margin-top: 5%;
-      width: 80%;
-    }
-    
+<style scoped>
+.container {
+  margin-left: 16%;
+  margin-top: 5%;
+  width: 80%;
+}
 
-    .parent-container {
-    display: flex; /* 启用 Flexbox 布局 */
-    justify-content: space-between; /* 可选，如果需要在子元素之间分配空间 */
-    border: 1px solid #e6e6e6; /* 表格外框 */
-    border-radius: 4px; /* 边框圆角 */
-    padding: 10px;
-    background-color: #fff; /* 背景色 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影 */
-    }
-    .el-button {
-      margin-right: 5%; /* 按钮间距 */
-    }
-    
-    .table-container {
-        border: 1px solid #e6e6e6; /* 表格外框 */
-        border-radius: 4px; /* 边框圆角 */
-        padding: 10px;
-        background-color: #fff; /* 背景色 */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影 */
-    }
-    .query-form {
-    margin-bottom: 20px;
-  }
-    </style>
+.parent-container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.el-button {
+  margin-right: 5%;
+}
+
+.table-container {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.query-form {
+  margin-bottom: 0;
+}
+
+.video-player {
+  width: 100%;
+  height: 500px;
+  margin-top: 20px;
+} 
+</style>
