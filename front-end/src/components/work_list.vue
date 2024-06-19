@@ -1,16 +1,12 @@
 <template>
     <div id="app" class="container">
       <div class="table-container">
-        <!-- <el-button type="primary" @click="addRow_admin">创建新机器人作业</el-button>
-        <el-button type="primary" @click="addRow_user">导入新作业</el-button> -->
 
               <!-- 按钮组 -->
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div >
             <el-button type="primary" @click="addRow_admin">创建新机器人作业</el-button>
             <el-button type="primary" @click="addRow_user">导入新作业</el-button>
-          </div>
-          <div>
           </div>
         </div>
 
@@ -74,19 +70,7 @@
             </template>
           </el-table-column>
 
-
-
-
-
-
         </el-table>
-
-
-
-
-
-
-
 
 
       </div>

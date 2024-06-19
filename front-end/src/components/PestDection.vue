@@ -227,9 +227,6 @@ export default {
       dropdownVisible: false,
     };
   },
-  created: function () {
-    document.title = "病虫害检测WEB端";
-  },
   methods: {
     true_upload() {
       this.$refs.upload.click();

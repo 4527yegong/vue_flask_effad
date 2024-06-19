@@ -1,134 +1,130 @@
 <template>
-    <div id="layui" class="layui-layout layui-layout-admin">
+  <div id="layui" class="layui-layout layui-layout-admin">  
+
+    <!-- 头部区域（可配合layui 已有的水平导航） -->
+    <div class="layui-header">
+      <div class="layui-logo layui-hide-xs layui-bg-black">云边端融合感知平台</div>
+
+      <!-- 移动端显示 -->
+      <ul class="layui-nav layui-layout-left">
+          <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+              <i class="layui-icon layui-icon-spread-left"></i>
+          </li>
+          <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">标签页 1</a></li>
+          <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">标签页 2</a></li>
+          <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">标签页 3</a></li>
+              <!-- <li class="layui-nav-item">
+                  <a href="javascript:;">nav groups</a>
+                  <dl class="layui-nav-child">
+                  <dd><a href="javascript:;">menu 11</a></dd>
+                  <dd><a href="javascript:;">menu 22</a></dd>
+                  <dd><a href="javascript:;">menu 33</a></dd>
+                  </dl>
+              </li> -->
+      </ul>
         
-        <div class="layui-header">
-            <div class="layui-logo layui-hide-xs layui-bg-black">云边端融合感知平台</div>
-            <!-- 头部区域（可配合layui 已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left">
-                <!-- 移动端显示 -->
-                <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
-                    <i class="layui-icon layui-icon-spread-left"></i>
-                </li>
-                <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">标签页 1</a></li>
-                <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">标签页 2</a></li>
-                <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">标签页 3</a></li>
-                <!-- <li class="layui-nav-item">
-                    <a href="javascript:;">nav groups</a>
-                    <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">menu 11</a></dd>
-                    <dd><a href="javascript:;">menu 22</a></dd>
-                    <dd><a href="javascript:;">menu 33</a></dd>
-                    </dl>
-                </li> -->
-            </ul>
-            <ul class="layui-nav layui-layout-right">
-                <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
-                    <a href="javascript:;">
-                        <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
-                        tester
-                        </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">Your Profile</a></dd>
-                        <dd><a href="javascript:;">Settings</a></dd>
-                        <dd><a href="javascript:;">Sign out</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-                    <a href="javascript:;">
-                    <i class="layui-icon layui-icon-more-vertical"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree" lay-filter="test" >
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                       <!-- <i class="layui-icon layui-icon-face-smile" style="font-size: 20px; color: #1E9FFF;margin-right: 8px;"></i>  -->
-                        <a href="javascript:;" class="dropbtn" @click="goto_1" style="height: 50px;">病虫害检测</a>
-                        <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_1">
-                            <dd v-for="type in types_1" :key="type" style="  margin-left: 15%;">
-                                <a href="javascript:;" >{{ type }}</a>
-
-                            </dd>
-                        </dl> -->
-                    </li>
-                   
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <!-- <i class="layui-icon layui-icon-user" style="font-size: 20px; color: #1E9FFF;"></i>  -->
-                      <a href="javascript:;" class="dropbtn" @click="goto_10" style="height: 50px;">检测模型管理</a>
-                    </li>
-
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                        <a href="javascript:;" class="dropbtn" @click="goto_2" style="height: 50px;">机器人状态</a>
-                        <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_2">
-                            <dd v-for="type in types_2" :key="type"  style="  margin-left: 15%;">
-                                <a href="javascript:;">{{ type }}</a>
-                            </dd>
-                        </dl> -->
-                    </li>
-
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                        <a href="javascript:;" class="dropbtn" @click="goto_11" style="height: 50px;">机器人行动轨迹</a>
-                        <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_2">
-                            <dd v-for="type in types_2" :key="type"  style="  margin-left: 15%;">
-                                <a href="javascript:;">{{ type }}</a>
-                            </dd>
-                        </dl> -->
-                    </li>
-
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <!-- <i class="layui-icon layui-icon-user" style="font-size: 20px; color: #1E9FFF;"></i>  -->
-                      <a href="javascript:;" class="dropbtn" @click="goto_13" style="height: 50px;">机器人接口</a>
-                    </li>
-
-
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <!-- <i class="layui-icon layui-icon-user" style="font-size: 20px; color: #1E9FFF;"></i>  -->
-                      <a href="javascript:;" class="dropbtn" @click="goto_3" style="height: 50px;">多租户管理</a>
-                    </li>
-
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_4" style="height: 50px;">机器人作业管理</a>
-                    </li>
-                    
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_5" style="height: 50px;">时序数据库</a>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_6" style="height: 50px;">设备管理</a>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_7" style="height: 50px;">物模型管理</a>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_8" style="height: 50px;">边端管理</a>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_9" style="height: 50px;">场景联动</a>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">   
-                      <a href="javascript:;" class="dropbtn" @click="goto_14" style="height: 50px;">数据库表管理</a>
-                    </li>
-                    <!-- <li class="layui-nav-item" style="display: flex;  align-items: center;margin-left: 10% ;">
-                      <a href="javascript:;" class="dropbtn" @click="goto_12" style="height: 50px;">高级数据转换</a>
-                    </li> -->
-                </ul>
-            </div>
-        </div> 
-        
-        <div class="layui-footer">
-            <!-- 底部固定区域 -->
-            底部固定区域
-        </div>
+      <!-- 客户端显示 -->
+      <ul class="layui-nav layui-layout-right">
+          <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+              <a href="javascript:;">
+                  <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
+                  tester
+                  </a>
+              <dl class="layui-nav-child">
+                  <dd><a href="javascript:;">Your Profile</a></dd>
+                  <dd><a href="javascript:;">Settings</a></dd>
+                  <dd><a href="javascript:;">Sign out</a></dd>
+              </dl>
+          </li>
+          <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+              <a href="javascript:;">
+              <i class="layui-icon layui-icon-more-vertical"></i>
+              </a>
+          </li>
+      </ul>
     </div>
-  </template>
+
+    <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <ul class="layui-nav layui-nav-tree" lay-filter="test" >
+          
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+                <!-- <i class="layui-icon layui-icon-face-smile" style="font-size: 20px; color: #1E9FFF;margin-right: 8px;"></i>  -->
+                <a href="javascript:;" class="dropbtn" @click="goto_1" style="height: 50px;">病虫害检测</a>
+                <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_1">
+                    <dd v-for="type in types_1" :key="type" style="  margin-left: 15%;">
+                        <a href="javascript:;" >{{ type }}</a>
+
+                    </dd>
+                </dl> -->
+            </li>
+            
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_10" style="height: 50px;">检测模型管理</a>
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+                <a href="javascript:;" class="dropbtn" @click="goto_2" style="height: 50px;">机器人状态</a>
+                <!-- <dl class="layui-nav-child" v-show="isDropdownVisible_2">
+                    <dd v-for="type in types_2" :key="type"  style="  margin-left: 15%;">
+                        <a href="javascript:;">{{ type }}</a>
+                    </dd>
+                </dl> -->
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+                <a href="javascript:;" class="dropbtn" @click="goto_11" style="height: 50px;">机器人行动轨迹</a>
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_13" style="height: 50px;">机器人接口</a>
+            </li>
+
+
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_3" style="height: 50px;">多租户管理</a>
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_4" style="height: 50px;">机器人作业管理</a>
+            </li>
+            
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_5" style="height: 50px;">时序数据库</a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_6" style="height: 50px;">设备管理</a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_7" style="height: 50px;">物模型管理</a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_8" style="height: 50px;">边端管理</a>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_9" style="height: 50px;">场景联动</a>
+            </li>
+            <!-- <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">   
+              <a href="javascript:;" class="dropbtn" @click="goto_14" style="height: 50px;">数据库表管理</a>
+            </li> -->
+            <li class="layui-nav-item layui-nav-itemed" style="display: flex;  align-items: center;margin-left: 10% ;">
+              <a href="javascript:;" class="dropbtn" @click="goto_12" style="height: 50px;">高级数据转换</a>
+            </li>
+        </ul>
+      </div>
+    </div> 
+
+    <!-- 底部固定区域 -->
+    <div class="layui-footer">
+        底部固定区域
+    </div>
+  </div>
+</template>
   
 
 
-  <script>
+<script>
 
 export default {
   name: 'LayoutWithLayui',
@@ -172,7 +168,9 @@ export default {
     };
   },
 
-
+  created: function () {
+      document.title = "云边端融合感知平台";
+    },
   methods: {
     toggleDropdown_1() {
       this.isDropdownVisible_1 = !this.isDropdownVisible_1;
@@ -353,7 +351,7 @@ export default {
   border-bottom: 1px solid #f8f9f9;
 }
 .layui-logo .layui-hide-xs .layui-bg-black {
-    font-size: 50px;
+    font-size: 40px;
 }
 .layui-logo {
   font-size: 24px;

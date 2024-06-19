@@ -33,6 +33,10 @@ import AdvancedDataTransform from './components/AdvancedDataTransform.vue'
 import robot_interface from './components/robot_interface.vue'
 import DatabaseTable from './components/DatabaseTable.vue'
 import work_vidoe from './components/work_vidoe.vue'
+import data_robot1 from './components/data_robot/data_robot1.vue'
+import data_robot2 from './components/data_robot/data_robot2.vue'
+import picture_show from './components/data_robot/picture_1.vue'
+
 
 Vue.use(Element)
 Vue.config.productionTip = false// 对于 JavaScript 文件，应该使用如下语法
@@ -58,7 +62,10 @@ const router = new VueRouter({
         {path: "/AdvancedDataTransform", component: AdvancedDataTransform, meta: {title: 'AdvancedDataTransform'}},
         {path: "/robot_interface", component: robot_interface, meta: {title: 'robot_interface'}},
         {path: "/DatabaseTable", component: DatabaseTable, meta: {title: 'DatabaseTable'}},
-        {path: "/work_vidoe", component: work_vidoe, meta: {title: 'work_vidoe'}}
+        {path: "/work_vidoe", component: work_vidoe, meta: {title: 'work_vidoe'}},
+        {path: "/detail/1", component: data_robot1, meta: {title: 'data_robot_1'}},
+        {path: "/detail/2", component: data_robot2, meta: {title: 'data_robot_2'}},
+        {path: "/picture_show", component: picture_show, meta: {title: 'picture_show'}}
     ],
     mode: "history",
 })

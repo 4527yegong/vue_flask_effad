@@ -1,6 +1,8 @@
 <template>
   <div id="app"> 
     <app-sidebar></app-sidebar>
+    <!-- <app-header></app-header> -->
+    <!-- <app-container></app-container> -->
     <router-view></router-view>
     
   </div>
@@ -10,6 +12,7 @@
 
 import sidebar from "./components/sidebar.vue";
 // import Tenant from "./components/Tenant.vue";
+// import Container from "./components/Container.vue";
 
 export default {
   name: "眼疾辅助诊断系统",
@@ -19,7 +22,7 @@ export default {
   components: {
     // "app-header": layui,
     "app-sidebar": sidebar,
-
+    // "app-container": Container,
   },
   methods: {
     showPage(pageName) {

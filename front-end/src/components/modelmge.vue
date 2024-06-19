@@ -11,12 +11,7 @@
           <el-table-column prop="name" label="模型名" width="180"></el-table-column>
           <el-table-column prop="time" label="更新时间" width="180"></el-table-column> -->
 
-          <el-table-column prop="num" label="编号" width="180">
-            <template slot-scope="scope">
-              <span v-if="!scope.row.editable">{{ scope.row.num }}</span>
-              <el-input v-else v-model="scope.row.num"></el-input>
-            </template>
-          </el-table-column>
+          <el-table :data="tableData" style="width: 100%">
 
           <el-table-column prop="name" label="模型名" width="180">
             <template slot-scope="scope">
@@ -38,27 +33,8 @@
               <el-button  size="mini" type="primary">导入权重</el-button>
               <el-button @click="deleteRow(scope.$index, scope.row)" size="mini" type="danger">删除 </el-button>
             </template>
-          </el-table-column>
-
-          <!-- <el-table-column label="操作" width="300">
-            <template slot-scope="scope">
-              <div style="display: flex; gap: 8px;">
-                <el-button
-                  size="mini"
-                  @click="editRow(scope.row)"
-                >编辑</el-button>
-                <el-button
-                  size="mini"
-                  @click="editRow(scope.row)"
-                >导入权重</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="deleteRow(scope.$index, scope.row)"
-                >删除</el-button>
-              </div>
-            </template>
-          </el-table-column> -->
+          </el-table-column> 
+        </el-table>
         </el-table>
       </div>
     </div>
