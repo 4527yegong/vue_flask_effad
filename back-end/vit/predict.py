@@ -49,7 +49,9 @@ def predict(img_path, type):
     # create model
     model = create_model(num_classes=4, has_logits=False).to(device)
     # load model weights
-    model_weight_path = r"C:\Users\lianlong\Desktop\Yolov5-Flask-VUE\back-end\vit\grape_weight\grape_weight\model-9.pth"
+
+    model_weight_path = r"C:\Users\win10\Desktop\grape_weight\grape_weight\model-9.pth"
+
     model.load_state_dict(torch.load(model_weight_path, map_location=device))
     model.eval()
     with torch.no_grad():
