@@ -97,8 +97,8 @@
   
   <style scoped>
   .container {
-    margin-left: 15%;
-    margin-top: 5%;
+    margin-left: 11%;
+    margin-top: 0;
   }
   
   .table-container {

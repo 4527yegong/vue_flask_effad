@@ -106,8 +106,8 @@
 
 <style scoped>
   .time-series-db {
-    margin-top: 5%;
-    margin-left: 15%;
+    margin-top: 0;
+    margin-left: 11%;
     border: 1px solid #e6e6e6; /* 表格外框 */
     border-radius: 4px; /* 边框圆角 */
     padding: 10px;

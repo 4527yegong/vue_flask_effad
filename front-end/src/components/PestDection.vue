@@ -364,6 +364,7 @@ export default {
 
 
 <style>
+
 .el-button {
   padding: 12px 20px !important;
 }
@@ -545,11 +546,11 @@ div {
   width: 85%;
   height: 1000px;
   background-color: #ffffff;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   display: flex;
   min-width: 1200px;
-  margin-top: 70px;
-  margin-left: 12%;
+  margin-top: 0;
+  margin-left: 11%;
 }
 
 .divider {

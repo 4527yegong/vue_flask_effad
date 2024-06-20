@@ -153,10 +153,9 @@
   </script>
 
 <style scoped>
-.container {
-  margin-left: 16%;
-  margin-top: 5%;
-  width: 80%;
+.container{
+  margin-left: 11%;
+  margin-top: 0;
 }
 
 .parent-container {
@@ -185,9 +184,4 @@
   margin-bottom: 0;
 }
 
-.video-player {
-  width: 100%;
-  height: 500px;
-  margin-top: 20px;
-} 
 </style>

@@ -97,10 +97,10 @@
   </script>
   
   <style scoped>
-  .container {
-    margin-left: 15%;
-    margin-top: 5%;
-  }
+    /* .container{
+      margin-left: 60%;
+      margin-top: 0;
+    } */
   
   .table-container {
     border: 1px solid #e6e6e6; /* 表格外框 */

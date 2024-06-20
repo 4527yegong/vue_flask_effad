@@ -1,19 +1,38 @@
 <template>
-  <div id="app"> 
-    
-    <app-sidebar></app-sidebar>
-    <!-- <app-header></app-header> -->
-    <!-- <app-container></app-container> -->
-    <router-view></router-view>
-    
+  <div id="layui" class="layui-layout layui-layout-admin">  
+    <!-- 上方头部 -->
+    <el-header >
+        <app-head></app-head>
+    </el-header>
+
+    <el-container> 
+
+      <!-- 侧边栏 -->
+      <el-aside >
+        <app-sidebar></app-sidebar>
+      </el-aside>
+      
+
+      <!-- 主体内容 -->
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+
+      <!-- 底部 -->
+        <el-footer >
+          <app-foot></app-foot>
+        </el-footer>
+    </el-container>
+
   </div>
 </template>
 
 <script>
 
-import sidebar from "./components/sidebar.vue";
-// import Tenant from "./components/Tenant.vue";
-// import Container from "./components/Container.vue";
+// import sidebar from "./components/sidebar.vue";
+import head from "./components/Container/head.vue";
+import foot from "./components/Container/foot.vue";
+import sidebar from "./components/Container/sidebar.vue";
 
 export default {
   name: "眼疾辅助诊断系统",
@@ -22,8 +41,11 @@ export default {
   },
   components: {
     // "app-header": layui,
+    // "app-sidebar": sidebar,
+    "app-head": head,
+    "app-foot": foot,
     "app-sidebar": sidebar,
-    // "app-container": Container,
+
   },
   methods: {
     showPage(pageName) {

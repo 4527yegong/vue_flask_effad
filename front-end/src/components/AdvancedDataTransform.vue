@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div class="container">
       <!-- 输入数据 -->
         <div class="data-converter" style="margin-top: 5%; display: flex; justify-content: space-between;">
             <el-card class="data-card">
@@ -272,6 +272,10 @@
   </script>
   
   <style scoped>
+      .container{
+      margin-left: 11%;
+      margin-top: 0;
+    }
   .data-converter {
     max-width: 1000px;
     height: 350px;
