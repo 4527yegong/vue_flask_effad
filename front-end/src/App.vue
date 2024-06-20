@@ -1,5 +1,6 @@
 <template>
   <div id="app"> 
+    
     <app-sidebar></app-sidebar>
     <!-- <app-header></app-header> -->
     <!-- <app-container></app-container> -->
